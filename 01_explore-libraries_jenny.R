@@ -1,17 +1,25 @@
-## how jenny might do this in a first exploration
-## purposely leaving a few things to change later!
+#' ---
+#' output: github_document
+#' ---
+# github output is a total Aha!
+# grepl output TRUE / FASLE --> for counts
+
+## John's final, using Jenny's solutions
+
 library(tidyverse)
+library(fs)
+library(here)
+
 
 #' Which libraries does R search for packages?
 .libPaths()
 
 ## let's confirm the second element is, in fact, the default library
 .Library
-library(fs)
-ypath_real(.Library)
+
+path_real(.Library)
 
 #' Installed packages
-library(tidyverse)
 ipt <- installed.packages() %>%
   as_tibble()
 
@@ -51,6 +59,9 @@ all_default_pkgs <- list.files(.Library)
 all_br_pkgs <- ipt %>%
   filter(Priority %in% c("base", "recommended")) %>%
   pull(Package)
+
+# ^^ you get a vector, not a data frame!
+
 setdiff(all_default_pkgs, all_br_pkgs)
 
 ## study package naming style (all lower case, contains '.', etc
@@ -58,6 +69,7 @@ setdiff(all_default_pkgs, all_br_pkgs)
 ## use `fields` argument to installed.packages() to get more info and use it!
 ipt2 <- installed.packages(fields = "URL") %>%
   as_tibble()
+
 ipt2 %>%
   mutate(github = grepl("github", URL)) %>%
   count(github) %>%
