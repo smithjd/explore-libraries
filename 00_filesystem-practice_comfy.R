@@ -1,3 +1,6 @@
+#' ---
+#' output: github_document
+#' ---
 ## Outline of how I would copy the .R files from, e.g.,
 ## ~/Desktop/day1_s1_explore-libraries
 ## to the current project
@@ -35,7 +38,7 @@ file.path()
 ## basename() will be handy
 
 ## copy the files
-file.copy(from_files, to_files)
+# file.copy(from_files, to_files)
 
 ## list the files here (and look in file browser) to verify success
 
@@ -69,7 +72,7 @@ library(fs)
 ## path_file() will be handy
 
 ## copy the files and store the result
-out <- file_copy(from_files, to_files)
+# out <- file_copy(from_files, to_files)
 
 ## inspect the result: notice that it's handy to see the actual paths that were
 ## copied to!
